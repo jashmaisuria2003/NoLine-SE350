@@ -34,3 +34,13 @@ The goal for the final project is to expand the NoLine queue system with additio
 
 ## Problems Encountered
 Some challenges included setting up GitHub CLI authentication and organizing the project structure while implementing multiple design patterns together.
+
+## How to Run
+
+Compile:
+javac src/*.java
+
+Run:
+java -cp src Main
+
+
