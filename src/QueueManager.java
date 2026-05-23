@@ -43,6 +43,21 @@ public class QueueManager {
         notifyObservers(customer.getName() + " cancelled their place in line.");
     }
 
+    public void showQueue() {
+        if (queue.isEmpty()) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+
+        System.out.println("\nCurrent Queue:");
+        int position = 1;
+
+        for (Customer customer : queue) {
+            System.out.println(position + ". " + customer.getName());
+            position++;
+        }
+    }
+
     public void notifyObservers(String message) {
         for (QueueObserver observer : observers) {
             observer.update(message);
