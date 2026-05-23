@@ -7,10 +7,17 @@ public class QueueManager {
 
     private Queue<Customer> queue;
     private ArrayList<QueueObserver> observers;
+    private QueueStrategy strategy;
+
+    private int servedCount;
+    private int cancelledCount;
 
     private QueueManager() {
         queue = new LinkedList<>();
         observers = new ArrayList<>();
+        strategy = new FIFOQueueStrategy();
+        servedCount = 0;
+        cancelledCount = 0;
     }
 
     public static QueueManager getInstance() {
@@ -21,9 +28,10 @@ public class QueueManager {
     }
 
     public void addCustomer(Customer customer) {
-        queue.add(customer);
+        strategy.addCustomer(queue, customer);
         observers.add(customer);
-        notifyObservers(customer.getName() + " joined the queue.");
+
+        notifyObservers(customer.getName() + " joined the queue with Ticket #" + customer.getTicketNumber());
     }
 
     public void serveNextCustomer() {
@@ -31,16 +39,12 @@ public class QueueManager {
             Customer customer = queue.poll();
             customer.setState(new ServedState());
             customer.showState();
-            notifyObservers(customer.getName() + " was served.");
+            servedCount++;
+
+            notifyObservers("Ticket #" + customer.getTicketNumber() + " - " + customer.getName() + " was served.");
         } else {
             System.out.println("No customers are currently in the queue.");
         }
-    }
-
-    public void cancelCustomer(Customer customer) {
-        customer.setState(new CancelledState());
-        customer.showState();
-        notifyObservers(customer.getName() + " cancelled their place in line.");
     }
 
     public void showQueue() {
@@ -53,8 +57,33 @@ public class QueueManager {
         int position = 1;
 
         for (Customer customer : queue) {
-            System.out.println(position + ". " + customer.getName());
+            int estimatedWait = (position - 1) * 5;
+            System.out.println(position + ". Ticket #" + customer.getTicketNumber()
+                    + " - " + customer.getName()
+                    + " | Estimated wait: " + estimatedWait + " minutes");
             position++;
+        }
+    }
+
+    public void showStatistics() {
+        System.out.println("\nQueue Statistics:");
+        System.out.println("Queue Strategy: " + strategy.getStrategyName());
+        System.out.println("Customers Waiting: " + queue.size());
+        System.out.println("Customers Served: " + servedCount);
+        System.out.println("Customers Cancelled: " + cancelledCount);
+    }
+
+    public void cancelNextCustomer() {
+        if (!queue.isEmpty()) {
+            Customer customer = queue.poll();
+            customer.setState(new CancelledState());
+            customer.showState();
+            cancelledCount++;
+
+            notifyObservers("Ticket #" + customer.getTicketNumber() + " - " + customer.getName()
+                    + " cancelled their place in line.");
+        } else {
+            System.out.println("No customers to cancel.");
         }
     }
 

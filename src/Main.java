@@ -18,8 +18,16 @@ public class Main {
             System.out.println("1. Add Customer");
             System.out.println("2. Serve Next Customer");
             System.out.println("3. Show Queue");
-            System.out.println("4. Exit");
+            System.out.println("4. Cancel Next Customer");
+            System.out.println("5. Show Statistics");
+            System.out.println("6. Exit");
             System.out.print("Choice: ");
+
+            if (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a number from 1 to 6.");
+                scanner.nextLine();
+                continue;
+            }
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -28,6 +36,11 @@ public class Main {
                 case 1:
                     System.out.print("Enter customer name: ");
                     String name = scanner.nextLine();
+
+                    if (name.trim().isEmpty()) {
+                        System.out.println("Customer name cannot be empty.");
+                        break;
+                    }
 
                     Customer customer =
                             (Customer) UserFactory.createUser("customer", name);
@@ -44,12 +57,20 @@ public class Main {
                     break;
 
                 case 4:
+                    queueManager.cancelNextCustomer();
+                    break;
+
+                case 5:
+                    queueManager.showStatistics();
+                    break;
+
+                case 6:
                     running = false;
                     System.out.println("Closing NoLine System...");
                     break;
 
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("Invalid choice. Please enter a number from 1 to 6.");
             }
         }
 

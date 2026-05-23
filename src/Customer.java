@@ -1,9 +1,15 @@
 public class Customer extends User implements QueueObserver {
     private CustomerState state;
+    private int ticketNumber;
 
-    public Customer(String name) {
+    public Customer(String name, int ticketNumber) {
         super(name);
+        this.ticketNumber = ticketNumber;
         state = new WaitingState();
+    }
+
+    public int getTicketNumber() {
+        return ticketNumber;
     }
 
     public void setState(CustomerState state) {
