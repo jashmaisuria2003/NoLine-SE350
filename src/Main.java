@@ -61,8 +61,9 @@ public class Main {
                     break;
 
                 case 5:
-                    queueManager.showStatistics();
-                    break;
+                     Command command = new ShowStatisticsCommand(queueManager);
+                     command.execute();
+                     break;
 
                 case 6:
                     running = false;
