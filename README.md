@@ -101,6 +101,25 @@ The goal for the final project is to expand the NoLine queue system with additio
 ## Problems Encountered
 Some challenges included setting up GitHub CLI authentication and organizing the project structure while implementing multiple design patterns together.
 
+
+## Sprint 5 Progress
+
+### Design Patterns Implemented
+- Singleton Pattern
+- Factory Pattern
+- Strategy Pattern
+- Observer Pattern
+- State Pattern
+- Command Pattern
+
+### Final Demonstration
+The final project will demonstrate a virtual queue management system where customers can join a queue, business owners can manage the queue, and customers receive updates. The project uses multiple design patterns to make the code modular and easy to extend.
+
+### Challenges
+The biggest challenge was integrating multiple design patterns into one project while keeping the code organized and ensuring that each pattern was actually used.
+
+
+
 ## How to Run
 
 Compile:
