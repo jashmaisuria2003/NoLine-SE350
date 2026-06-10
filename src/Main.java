@@ -8,23 +8,28 @@ public class Main {
         BusinessOwner owner =
                 (BusinessOwner) UserFactory.createUser("owner", "Cafe Owner");
 
-        System.out.println(" Hi! Welcome to NoLine Queue System ");
-        System.out.println(owner.getName() + " opened the queue.");
+        System.out.println(ConsoleColors.BLUE + "==========================================");
+        System.out.println("          NoLine Queue System");
+        System.out.println("==========================================" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN + owner.getName() + " opened the queue." + ConsoleColors.RESET);
 
         boolean running = true;
 
         while (running) {
-            System.out.println("\nSelect an option:");
+            System.out.println(ConsoleColors.CYAN + "\n------------------------------------------");
+            System.out.println("Business: " + owner.getName());
+            System.out.println("------------------------------------------" + ConsoleColors.RESET);
             System.out.println("1. Add Customer");
             System.out.println("2. Serve Next Customer");
             System.out.println("3. Show Queue");
             System.out.println("4. Cancel Next Customer");
             System.out.println("5. Show Statistics");
             System.out.println("6. Exit");
-            System.out.print("Choice: ");
+            System.out.println("------------------------------------------");
+            System.out.print("Enter your choice: ");
 
             if (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number from 1 to 6.");
+                System.out.println(ConsoleColors.RED + "Invalid input. Please enter a number from 1 to 6." + ConsoleColors.RESET);
                 scanner.nextLine();
                 continue;
             }
@@ -38,7 +43,7 @@ public class Main {
                     String name = scanner.nextLine();
 
                     if (name.trim().isEmpty()) {
-                        System.out.println("Customer name cannot be empty.");
+                        System.out.println(ConsoleColors.YELLOW + "Customer name cannot be empty." + ConsoleColors.RESET);
                         break;
                     }
 
@@ -61,17 +66,17 @@ public class Main {
                     break;
 
                 case 5:
-                     Command command = new ShowStatisticsCommand(queueManager);
-                     command.execute();
-                     break;
+                    Command command = new ShowStatisticsCommand(queueManager);
+                    command.execute();
+                    break;
 
                 case 6:
                     running = false;
-                    System.out.println("Closing NoLine System...");
+                    System.out.println(ConsoleColors.GREEN + "Closing NoLine System..." + ConsoleColors.RESET);
                     break;
 
                 default:
-                    System.out.println("Invalid choice. Please enter a number from 1 to 6.");
+                    System.out.println(ConsoleColors.RED + "Invalid choice. Please enter a number from 1 to 6." + ConsoleColors.RESET);
             }
         }
 
