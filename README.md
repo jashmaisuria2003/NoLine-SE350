@@ -120,6 +120,116 @@ The biggest challenge was integrating multiple design patterns into one project 
 
 
 
+# Final Submission
+
+## Project Overview
+
+NoLine is a console-based virtual queue management system designed to help businesses manage customer queues efficiently. Customers can join a queue, receive notifications about their status, and businesses can manage the queue through an interactive terminal interface. The project demonstrates object-oriented software development principles and the implementation of multiple design patterns to create a modular and maintainable application.
+
+---
+
+## Features
+
+* Interactive terminal-based menu
+* Add customers to the queue
+* Serve the next customer
+* Cancel the next customer
+* Display the current queue
+* Display queue statistics
+* Customer notification system
+
+---
+
+## Design Patterns Implemented
+
+### Singleton Pattern
+
+**Class:** `QueueManager`
+
+Ensures there is only one instance responsible for managing the queue throughout the application.
+
+### Factory Pattern
+
+**Class:** `UserFactory`
+
+Creates different types of users such as `Customer` and `BusinessOwner` without exposing object creation logic.
+
+### Observer Pattern
+
+**Classes:** `QueueObserver`, `Customer`
+
+Customers receive notifications whenever queue events occur.
+
+### Strategy Pattern
+
+**Classes:** `QueueStrategy`, `FIFOQueueStrategy`
+
+Allows queue management strategies to be changed independently from the rest of the system.
+
+### State Pattern
+
+**Classes:**
+
+* `CustomerState`
+* `WaitingState`
+* `ServedState`
+* `CancelledState`
+
+Represents different customer states during the queue lifecycle.
+
+### Command Pattern
+
+**Classes:** `Command`, `ShowStatisticsCommand`
+
+Encapsulates operations such as displaying queue statistics into command objects.
+
+
+## Demonstration
+
+The application demonstrates the following workflow:
+
+1. Business owner opens the queue
+2. Customer joins the queue
+3. Additional customers join the queue
+4. Display the current queue
+5. Serve the next customer
+6. Cancel the next customer
+7. Display queue statistics
+8. Exit the application
+
+
+## Current Limitations
+
+* Data is stored only during program execution.
+* No persistent database integration.
+* No graphical user interface.
+* Queue information resets when the application closes.
+
+
+## Future Improvements
+
+* Database integration
+* Web and mobile interface
+* Appointment scheduling
+* Email and SMS notifications
+* Multiple queue strategies
+* Enhanced business analytics dashboard
+
+
+## Final Notes
+
+This project demonstrates the practical application of Object-Oriented Software Development concepts by implementing six custom design patterns:
+
+* Singleton
+* Factory
+* Observer
+* Strategy
+* State
+* Command
+
+The primary goal of the project was to create a modular, maintainable, and extensible virtual queue management system while providing a functional working application for demonstration.
+
+
 ## How to Run
 
 Compile:
